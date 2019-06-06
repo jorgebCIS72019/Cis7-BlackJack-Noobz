@@ -4,7 +4,7 @@ Team Members: Jorge Bautista and Luis Batz
 For: CIS 7 class
 Project Description: To create a black jack game program.
 Purpose: To demonstrate learned concepts from CIS 7
-Version 1.0 - Completed
+Version 1.0 
 Date of creation - 5/5/19
 
 
