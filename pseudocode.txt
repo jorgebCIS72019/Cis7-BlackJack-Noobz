@@ -1,0 +1,626 @@
+Pseudocode
+Written by Jorge Bautista
+Team: Black Jack Noobz
+Team Members: Jorge Bautista & Luis Batz
+
+Main
+--------------------------------------------------------------------------------------------------
+#include - deck.h, iostream, string
+using namespace std;
+
+int main()
+{
+	int
+		------ -
+		choice = 0
+		option = 0
+		money_choice = 0
+		split_score_tmp = 0
+
+		double
+		----------
+		money_pot = 0.0
+
+		bool
+		------------
+		dealer_turn = false
+		push = false
+		black jack = false
+		split is found = false
+		not enough cards = false
+		double is possible = false
+
+		While(option is not 2 and not enough cards = false)
+	{
+		if (push is false)
+		{
+			shuffle the deck
+				display menu
+				user enters a choice of playing or exiting
+		}
+		else
+		{
+			automatically selects to play the game
+		}
+		switch (choice if play or exit game)
+		{
+		case:1 play the game
+			clear hands
+			reset if ace is found bool
+
+			if (push is false)
+			{
+				if (if players money is less than or equal to 0)
+				{
+					clear money
+						display starting money amount - $1000
+						adds money to money_system int
+				}
+				else if (money is more than 0)
+				{
+					display money ammount
+				}
+			}
+			else
+			{
+				diplay money you have
+					set push to false
+			}
+			 do
+			 {
+				 displays menu on how much player wants to bet
+					 player enters choice
+					 depending on choice money is subtracted from the money pot
+			 }While(choice is more than 1 and less than 7)
+					 if (has used up more than 47 cards)
+					 {
+						 set not enough cards to true
+					 }
+					 else
+					 {
+						 if (deck used up more than 0 cards)
+						 {
+							 increment count for cards used
+						 }
+						 deal cards(1) = first four cards of the game
+
+							 if (player score is 21 and player only have 2 cards)
+							 {
+								 set blackjack bool to true
+							 }
+						 if (betting money is less than money pot and player hand size is less than 2)
+						 {
+							 set double bool is possible to true
+						 }
+					 }
+				 while (player score is less than 21 and not enough cards is false)
+				 {
+					 ask user to hit or stand or split if split is possible and cards in hand are 2
+						 if (double is possible and hand size is true)
+							 display option to double
+				 }
+				 user enters choice
+
+					 switch (option)
+		case 1: player chooses to hit
+						 deck deals new card
+		case 2: player chooses to stand, dealers turn is set to true
+		case 3: split is possible
+						 money is taken out of money pot
+						 hand is split into 2
+						 each hand gets an auto new card
+						 and can continue game as normal playing two hands
+						 before dealer's turn
+		case 4: player chose to double
+						 money is taken out of money pot
+						 player is dealt new card
+		default: asks user to enter a correct choice
+		}
+		if (dealers turn is true)
+		{
+			break
+		}
+		if (dealers turn is true and split is found is true)
+		{
+			set dealers turn to false
+		}
+		if (double is possible is true)
+		{
+			set double is possible to false
+		}
+
+		if (split is found is true)
+		{
+			displays first hand
+				displays card values
+				deals cards
+		}
+		while player score is less than 21 and not enough cards is false
+		{
+			display menu choosing to hit
+				choosing to stand
+				choosing to split if possible
+				choosing to double if possible
+		}
+		switch (option)
+		{
+		case 1: deals new card if chose to hit
+		case 2: dealers turn is set to true
+		case 3: chose to double is displayed, money taken from pot, and dealt new card, then dealers turn
+		default: choose correct choice
+		}
+		if (dealers turn is true)
+		{
+			break
+		}
+	}
+	if (dealers turn is true or black jack is false and score is 21)
+	{
+		display that player stands
+			display that it is dealers turn
+			dealer display hidden card
+			while their score is less than 17 they hit,
+				if higher they stand
+					also if cards left in deck is less than 52 continue to hit,
+	}
+	else
+	{
+		set not enough cards to true
+	}
+	set dealer turn to false
+
+		if (split is found is true)
+		{
+			if (black jack is true)
+			{
+				display final hands
+					print out both dealer and players hands
+					display won via black jack and give money appropriate amount of winnings
+					set black jack back to false
+			}
+			else if (split score temp is more than dealers score and split score is less than 21)
+			{
+				display final hands and you win followed by winnings
+			}
+			else if (dealers score is > split score is > player score and player score is less than 21)
+			{
+				display winnings
+			}
+			else if (dealer score > player score and player score is < 21 and dealer score < 21)
+			{
+				display loss
+			}
+			else if (dealer  score > 21 and player < 21)
+			{
+				display win
+			}
+			else if (player score is > 21)
+			{
+				display loss
+			}
+			else if (player black is same as dealer black jack)
+			{
+				display tie via black jack
+					give players back 2.5 times their winings
+					clear hands
+					deal new hands
+			}
+			else if (player and dealers score tie)
+			{
+				display tie
+					give back original bet
+					clear hands
+					deal new hands
+			}
+			else if (player scores 21 and dealer does not score 21)
+			{
+				display win
+			}
+			else if (dealer scores 21 and player does not)
+			{
+				display loss
+			}
+			if (split is found is true)
+			{
+				set to false
+			}
+case 2: exit
+	display how much money player exited with
+	display leaving message
+default:
+	choose correct choice
+		}
+	if (not enough cards is true)
+	{
+		display deck has run out of cards
+			player finished with how much money
+			display leaving message
+	}
+system ("pause")
+return 0;
+}
+
+
+
+-----------------------------------------------------------------------------------------------------
+Deck.h
+-----------------------------------------------------------------------------------------------------
+#include guards
+
+include "card.h"
+include vector
+
+using namespace std;
+
+Class Deck
+{
+private:
+	vector card deck;
+	vector card player hand;
+	vector card dealer hand;
+	vector card split hand tmp;
+	vector card final_hand;
+
+	int
+		-------------------------- -
+		card position;
+	ps - player score;
+	ds - dealer score;
+	needed val to win;
+
+	double
+		---------------------------- -
+		pm - player money;
+
+	bool
+		----------------------------
+		player ace is found
+		dealer ace is found
+public:
+	deck(); //defaul constructor
+	void
+		--------------------
+		shuffle()
+		print deck
+		deal cards
+		show player hand
+	int
+		----------------------
+		player score
+		dealer score
+	void
+		-------------------- -
+		clear hands
+	int
+		-------------------- -
+		get player hand size
+		get value of cards
+
+	double
+		------------------------
+		get player money
+	void
+		--------------------
+		money system
+	int
+		---------------------- -
+		get get dealer hand size
+	void
+		-------------------- -
+		clear money
+	int
+		-------------------- -
+		get card position
+	void
+		----------------------
+		increment card position
+		reset ace is found
+	double
+		--------------------
+		get win probability
+	int
+		-------------------- -
+		get value of cards for dealer
+	void
+		-------------------------------- -
+		split clear hands
+		final hand stored
+		print final hands
+
+};
+
+#include guards
+
+
+
+-----------------------------------------------------------------------------------------------------
+Card.h
+-----------------------------------------------------------------------------------------------------
+
+
+#include guards Card H
+
+class Card
+{
+private:
+	int
+		-------------------- -
+		suit
+		rank
+		val
+public:
+	card() default constructor
+		void
+		------------------
+		print card
+		int
+		------------------
+		get suit
+		get rank
+		get val
+		set val
+
+};
+#include guard
+
+
+
+-----------------------------------------------------------------------------------------------------
+Card.cpp
+-----------------------------------------------------------------------------------------------------
+
+#include Card
+#include string
+#include iostream
+
+using namespace std;
+
+Card:: card
+{
+	suit = s holds suit
+	rank = r holds rank
+
+	switch (rank) gives rank values if its not the same as rank
+	{
+		case 1:
+			val = 11
+		case 11:
+			val = 10
+		case 12:
+			val = 10
+		case 13:
+			val = 10
+		default: val = rank
+	}
+
+		void print card()
+				string
+				suit[] = hearts, diamonds, etc.
+				ranks[] = ace, jack, etc.
+				card name = ""
+
+				if (rank is 1)
+					set it to ace
+				else if
+					rank is between 10 and 14
+					and they are 11 + and less than 14
+					set them to jack, king, etc.
+				else
+					set card name to string name hearts, diamonds, etc.
+
+					for every 4 cards
+						set card name to suit name,
+
+}
+
+get suit()
+returns suit;
+
+get rank()
+returns rank;
+get val
+returns val;
+set val
+sets val to v;
+
+
+
+-----------------------------------------------------------------------------------------------------
+Deck.cpp
+-----------------------------------------------------------------------------------------------------
+		 
+
+
+#include deck, random, iostream, time, vector
+
+using namespace std;
+
+deck::deck() constructor
+{
+	set card position to 0;
+	ps to 0;
+	ds to 0;
+	need val to win to 0;
+
+	set bool player ace is found to false;
+	set bool dealer ace is found to false;
+
+	loop for gettings cards with suits and rank
+		using pushback function
+
+}
+
+void shuffle()
+{
+	unsined seed = time(0)
+		srand(seed)
+		rand shuffle from beginning of deck to end of deck
+
+}
+
+void print deck
+{
+	loop for displaying each card in the deck
+
+}
+
+void deal cards()
+{
+	switch (scenario) which way to deal cards
+	{
+
+	case 1: deals first four cards of the game
+			2 to each player
+		first it checks if cards have been dealt
+		if not it gives each player a card and incriments card position counter which tells what card is being used from the deck
+			also checks if ace was drawn to be able to adjust its value for when players hand value is above 11
+			every time it gives dealer or player card it incriments card position counter
+			 and adds up card value to make either ps player score or ds dealer score]
+			 Also send card dealer is dealt remains hidden until dealers turn
+
+	case 2:
+		if player chooses to hit
+			it first checks if player has ace so when next card is dealt to player the ace's value is adjusted
+			then it gives player card, and adds new value to ps(player score)
+
+	case 3:
+		dealer chooses to hit
+			displays dealers cards including card that was previously hidden
+			then checks for aces as to adjust value if needed.
+			then gives dealer new card as long as their ds(dealer score) has not exceeded 17.
+
+
+	}
+}
+void show player hand
+{
+	displays player hand on screen
+	as well as player hand value
+	and probability of drawing card that would give them a 21 to win
+
+}
+
+void show dealer hand
+{
+	if cards have just been dealt
+	displays dealer hand on screen with second card hidden
+	else
+		display entire hand
+}
+
+int player score()
+	{
+		returns player score
+	}
+
+int dealer score()
+{
+	returns dealer score
+}
+
+in clear hands()
+{
+	clears player and dealers hands
+		re - sets ps and ds to 0;
+}
+
+int get player hand size
+{
+	returns player hand size
+}
+
+double get player money
+{
+	return pm(player money)
+
+}
+
+void money system
+{
+	switch (money scenario) what are you doing with money system
+	{
+	case 0:
+		subtracts money
+	case 1:
+		adds moeny
+	case 2:
+		doubles money
+	case 3:
+		1.5 times back for black jack win
+	case 4:
+		2.5 times back for black jack tie
+	}
+}
+
+int get dealer hand size()
+		{
+			return dealer hand size;
+		}
+
+void clear money
+{
+	sets pm to 0;
+}
+
+int get val of card
+{
+	gets value of first card and second card of players hand
+	used to check split possibility
+
+}
+
+int card position
+{
+	returns card position
+
+}
+
+void incriment card positoin
+{
+	incriments card position
+}
+
+void reset if ace is found
+{
+	resets bool of if ace is found
+}
+
+double get win prob
+{
+	checks what card needed to win
+	checks how many cards left in deck
+	checks how many cards of cards needed to win left
+	calculates probabilty
+}
+
+int get val of card daler
+{
+	checks value of the first 2 cards in dealers hand
+}
+
+void split
+{
+	splits hand
+	pops out last card
+	and gets player new value of hand
+}
+
+void split hand clear
+{
+	player score set to 0
+	clears hands
+	checks if ace is found
+	adds new value to plit hand tmp to keep track of single hand from new split hand
+
+}
+
+void final hand store
+{
+	sets final hand to player hand
+
+}
+
+void print final hand
+{
+	display final hand that player ends up with after ending turn
+}
